@@ -1,0 +1,39 @@
+{
+  "name": "dustbin",
+  "version": "1.0.0",
+  "description": "Yet Another Text Storage Service.",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p tsconfig.json && tailwindcss build -i ./pages/tailwind.input.css -o ./pages/tailwind.css",
+    "start": "node build",
+    "dev": "tsc -p tsconfig.json && node build",
+    "watch:css": "tailwindcss -i ./pages/tailwind.input.css -o ./pages/tailwind.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DustbinServer/Dustbin.git"
+  },
+  "author": "Team Dustbin <support@dustbin.me>",
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/DustbinServer/Dustbin/issues"
+  },
+  "homepage": "https://github.com/DustbinServer/Dustbin#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.10",
+    "@types/pg": "^8.6.4",
+    "@types/uniqid": "^5.3.2",
+    "eslint": "^8.7.0",
+    "tailwindcss": "^3.0.15",
+    "ts-node": "^10.4.0",
+    "tslint": "^6.1.3",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "dropbox": "^10.23.0",
+    "fastify": "^3.27.0",
+    "pg": "^8.7.1",
+    "uniqid": "^5.4.0"
+  }
+}
