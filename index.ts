@@ -16,6 +16,11 @@ app.get('/tailwind.css', async (_request: FastifyRequest, reply: FastifyReply) =
         reply.type('text/css').send(fileBuffer);
     })
 });
+app.get('/favicon.png', async (_request: FastifyRequest, reply: FastifyReply) => {
+    fs.readFile(join(__dirname, '..', 'pages', 'favicon.png'), (_err: Error | null, fileBuffer: Buffer) => {
+        reply.type('image/x-png').send(fileBuffer);
+    })
+});
 app.get('/script/new.js', async (_request: FastifyRequest, reply: FastifyReply) => {
     fs.readFile(join(__dirname, '..', 'pages', 'script', 'new.js'), (_err: Error | null, fileBuffer: Buffer) => {
         reply.type('application/javascript').send(fileBuffer);
