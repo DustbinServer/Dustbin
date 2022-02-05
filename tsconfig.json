@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "es2021",
+    /* Modules */
+    "module": "commonjs",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*"],
+    },
+    "outDir": "./build",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+  },
+}

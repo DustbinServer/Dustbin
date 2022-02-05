@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Yet Another Text Storage Service..." />
+    <meta property="og:description" content="Yet Another Text Storage Service..." />
+    <meta content="Dustbin" property="og:title">
+    <meta content="en_US" property="og:locale">
+    <meta content="object" property="og:type">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:site_name" content="Dustbin">
+    <meta content="https://dustbin.me/favicon.png" property="og:image">
+    <meta property="og:image:alt" content="Yet Another Text Storage Service...">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dustbin | Admin</title>
+    <link rel="stylesheet" href="/tailwind.css">
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-png">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body class="select-none bg-slate-800 overflow-hidden">
+    <header class="flex flex-col w-full h-12">
+        <div class="flex flex-row items-center justify-between w-full h-14 mt-1 shadow-sm shadow-white">
+            <div class="flex flex-row items-center pl-2">
+                <a href="/">
+                    <span class="text-white font-semibold text-2xl">Dust</span>
+                    <span class="text-black bg-sky-600 font-semibold rounded p-0.5 text-2xl">Bin</span>
+                </a>
+            </div>
+            <div class="flex flex-row items-center justify-end pr-2">
+                <a href="https://github.com/DustbinServer/" class="text-white hover:text-blue-500 text-2xl">Github</a>
+            </div>
+        </div>
+    </header>
+    <section class="h-5/6 w-full fixed overflow-auto">
+        <div id="data" class="flex flex-col w-full mt-1">
+            <table id="documentsTable" class="text-white border-2 border-emerald-500 text-center">
+                <tr class="text-2xl font-semibold">
+                    <th class="border-2 border-slate-600">FileId</th>
+                    <th class="border-2 border-slate-600">Date</th>
+                    <th class="border-2 border-slate-600">Language</th>
+                </tr>
+            </table>
+        </div>
+        <div id="controls" class="flex flex-col justify-center h-full w-full items-center text-white gap-4">
+            <h1 class="text-5xl">Dustbin Admin</h1>
+            <input placeholder="Username" id="adminUsername" spellcheck="false" class="sm:w-1/3 w-10/12 bg-slate-700 font-sans text-xl outline-none border-none p-2 selection:text-emerald-500" type="text">
+            <input placeholder="Password" id="adminPassword" spellcheck="false" class="sm:w-1/3 w-10/12 bg-slate-700 font-sans text-xl outline-none border-none p-2 selection:text-emerald-500" type="password">
+            <button onclick="getAllDocuments(event);" class="p-2 font-semibold font-sans hover:text-white transition-all bg-sky-600 text-black rounded">Get All Documents</button>
+        </div>
+    </section>
+    <footer class="bottom-0 fixed w-full h-12 flex flex-row justify-center items-center text-white gap-1">
+        Made With <span class="text-red-600">💖</span> By <a href="https://github.com/DustbinServer/" class="text-emerald-500 hover:text-emerald-500">DustbinServer</a>
+    </footer>
+    <script src="/script/admin.js"></script>
+</body>
+</html>
