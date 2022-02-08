@@ -1,74 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Yet Another Text Storage Service..." />
-    <meta
-      property="og:description"
-      content="Yet Another Text Storage Service..."
-    />
-    <meta content="Dustbin" property="og:title" />
-    <meta content="en_US" property="og:locale" />
-    <meta content="object" property="og:type" />
-    <meta property="og:image:width" content="512" />
-    <meta property="og:image:height" content="512" />
-    <meta property="og:site_name" content="Dustbin" />
-    <meta content="https://dustbin.me/favicon.png" property="og:image" />
-    <meta
-      property="og:image:alt"
-      content="Yet Another Text Storage Service..."
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:description" content="Yet Another Text Storage Service..." />
+    <meta content="Dustbin" property="og:title">
+    <meta content="en_US" property="og:locale">
+    <meta content="object" property="og:type">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:site_name" content="Dustbin">
+    <meta content="https://dustbin.me/favicon.png" property="og:image">
+    <meta property="og:image:alt" content="Yet Another Text Storage Service...">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dustbin</title>
-    <link rel="stylesheet" href="/tailwind.css" />
-    <link rel="shortcut icon" href="/favicon.png" type="image/x-png" />
-  </head>
-  <body class="bg-slate-800 text-white flex flex-col h-screen justify-between">
-    <header class="flex flex-col w-full shadow-sm shadow-white">
-      <nav
-        class="p-2 w-full max-w-4xl mx-auto flex flex-row items-center justify-between"
-      >
-        <a href="/" class="select-none">
-          <span class="font-semibold">Dust</span>
-          <span class="text-black bg-sky-600 font-semibold rounded py-0.5 px-1"
-            >Bin</span
-          >
-        </a>
-        <ul>
-          <li>
-            <a href="https://github.com/DustbinServer/" class="hover:underline"
-              >GitHub</a
-            >
-          </li>
-        </ul>
-      </nav>
+    <link rel="stylesheet" href="/tailwind.css">
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-png">
+</head>
+<body class="select-none bg-slate-800">
+    <header class="flex flex-col w-full h-12">
+        <div class="flex flex-row items-center justify-between w-full h-14 mt-1 shadow-sm shadow-white">
+            <div class="flex flex-row items-center pl-2">
+                <a href="/">
+                    <span class="text-white font-semibold text-2xl">Dust</span>
+                    <span class="text-black bg-sky-600 font-semibold rounded p-0.5 text-2xl">Bin</span>
+                </a>
+            </div>
+            <div class="flex flex-row items-center justify-end pr-2">
+                <a href="https://github.com/DustbinServer/" class="text-white hover:text-blue-500 text-2xl">Github</a>
+            </div>
+        </div>
     </header>
-    <main class="w-full max-w-4xl mx-auto text-center">
-      <p class="text-4xl mb-4">
-        <span class="font-semibold">Dust</span>
-        <span class="text-black bg-sky-600 font-semibold rounded py-1 px-1.5"
-          >Bin</span
-        >
-      </p>
-      <p class="text-xl font-sans transition-all mb-4">
-        Yet another text storage service.
-      </p>
-      <a
-        href="/new"
-        class="px-2 py-1.5 rounded bg-sky-600 hover:bg-sky-600 active:bg-sky-600 text-white text-base"
-        >Paste...</a
-      >
-    </main>
-    <footer class="p-5 text-center">
-      <p>
-        Made with <span class="text-red-600">💖</span> by
-        <a
-          href="https://github.com/dustbinserver/"
-          class="text-emerald-500 hover:text-emerald-500"
-          >DustBin Server</a
-        >.
-      </p>
+    <section class="h-full w-full fixed">
+        <div class="flex flex-col justify-center items-center text-white h-full">
+            <a href="#">
+                <span class="text-white font-semibold text-4xl">Dust</span>
+                <span class="text-black bg-sky-600 font-semibold rounded p-0.5 text-4xl">Bin</span>
+            </a>
+            <p class="hover:text-emerald-600 text-2xl font-sans transition-all">Yet Another Text Storage Service...</p>
+            <a href="/new" class="mt-4 p-1.5 pl-2.5 pr-2.5 rounded bg-sky-600 hover:bg-sky-600 active:bg-sky-600 text-white text-2xl">Paste...</a>
+        </div>
+    </section>
+    <footer class="bottom-0 fixed w-full h-12 flex flex-row justify-center items-center text-white gap-1">
+        Made With <span class="text-red-600">💖</span> By <a href="https://github.com/DustbinServer/" class="text-emerald-500 hover:text-emerald-500">DustbinServer</a>
     </footer>
-  </body>
+</body>
 </html>
