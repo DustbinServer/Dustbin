@@ -1,6 +1,12 @@
-# Dustbin
+<p align="center"><img src="https://avatars.githubusercontent.com/u/88306458?s=200&v=4"></p>
+<p align="center">It's just another text storage service built in <b>fastify</b>.</p>
 
-It's just another text storage service built in **fastify**.
+## Table of Contents
+
+- [Api](#api)
+  - [Endpoints](#endpoints)
+- [Examples](#examples)
+- [Developers](#developers)
 
 ## API
 
@@ -9,47 +15,75 @@ Let's get started with it...
 
 ### Endpoints
 
-```diff
-+ POST /api/get - Get a paste from the storage
+#### The following endpoints are available -
 
-PARAMETERS
-[fileId]: string
+Get a paste from the storage -
+
+```http
+POST /api/get HTTP/1.1
+Host: dustbin.me
+Content-Type: application/json
+
+{ "fileId": "<string>" }
 ```
 
-```diff
-+ POST /api/new - Create a new paste
+The request body is provided in place -
 
-PARAMETERS
-[data]: string
-[language]: string
+```http
+POST /api/new HTTP/1.1
+Host: dustbin.me
+Content-Type: application/json
+
+{ "data" : "<string>", "language": "string" }
+```
+
+Get a paste in browser -
+
+```http
+GET /paste/{fileId} HTTP/1.1
+Host: dustbin.me
+```
+
+Get raw paste in browser -
+
+```http
+GET /paste/{fileId}/raw HTTP/1.1
+Host: dustbin.me
+```
+
+Download a paste in browser -
+
+```http
+GET /paste/{fileId}/download HTTP/1.1
+Host: dustbin.me
 ```
 
 ## Examples
 
-- ### Python
+- #### Python
 
 ```python
 import requests
 
 # Create A New Paste
 new_req = requests.post(
-    'https://dustbin.me/api/new',
-    json={
-        'data': 'def main():\n\tprint("Hello World!")\n\nif __name__ == "__main__":\n\tmain()',
-        'language': 'Python'
-    })
+  'https://dustbin.me/api/new',
+  json={
+    'data': 'def main():\n\tprint("Hello World!")\n\nif __name__ == "__main__":\n\tmain()',
+    'language': 'Python',
+})
 print(new_req.json())
 paste_id = new_req.json()['id']
 
 # Get The Same Paste
 paste_req = requests.post(
-    'https://dustbin.me/api/paste/',
-    json={'fileId': paste_id},
-    )
+  'https://dustbin.me/api/paste/',
+  json={'fileId': paste_id},
+)
 print(paste_req.json())
 ```
 
-- ### Dart
+- #### Dart
 
 ```dart
 import 'dart:convert';

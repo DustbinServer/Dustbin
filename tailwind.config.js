@@ -1,7 +1,11 @@
 module.exports = {
   content: ["./pages/**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        mono: ['Fira Code', 'monospace']
+      },
+    },
   },
   plugins: [],
 };

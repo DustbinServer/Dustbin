@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import Fastify, { FastifyReply, FastifyRequest } from 'fastify';
 import { join } from 'path';
 import fs from 'fs';
@@ -8,46 +9,46 @@ interface DustbinDocument {
     data?: any;
     id: string;
     language: string;
-}
+};
 
 
 app.get('/tailwind.css', async (_request: FastifyRequest, reply: FastifyReply) => {
     fs.readFile(join(__dirname, '..', 'pages', 'tailwind.css'), (_err: Error | null, fileBuffer: Buffer) => {
         reply.type('text/css').send(fileBuffer);
-    })
+    });
 });
 app.get('/favicon.png', async (_request: FastifyRequest, reply: FastifyReply) => {
     fs.readFile(join(__dirname, '..', 'pages', 'favicon.png'), (_err: Error | null, fileBuffer: Buffer) => {
         reply.type('image/x-png').send(fileBuffer);
-    })
+    });
 });
 app.get('/script/new.js', async (_request: FastifyRequest, reply: FastifyReply) => {
     fs.readFile(join(__dirname, '..', 'pages', 'script', 'new.js'), (_err: Error | null, fileBuffer: Buffer) => {
         reply.type('application/javascript').send(fileBuffer);
-    })
+    });
 });
 app.get('/script/admin.js', async (_request: FastifyRequest, reply: FastifyReply) => {
     fs.readFile(join(__dirname, '..', 'pages', 'script', 'admin.js'), (_err: Error | null, fileBuffer: Buffer) => {
         reply.type('application/javascript').send(fileBuffer);
-    })
+    });
 });
 
 app.get('/', async (_request: FastifyRequest, reply: FastifyReply) => {
     fs.readFile(join(__dirname, '..', 'pages', 'index.html'), (_err: Error | null, fileBuffer: Buffer) => {
         reply.type('text/html').send(fileBuffer);
-    })
+    });
 });
 
 app.get('/new', async (_request: FastifyRequest, reply: FastifyReply) => {
     fs.readFile(join(__dirname, '..', 'pages', 'new.html'), (_err: Error | null, fileBuffer: Buffer) => {
         reply.type('text/html').send(fileBuffer);
-    })
+    });
 });
 
 app.get('/admin', async (_request: FastifyRequest, reply: FastifyReply) => {
     fs.readFile(join(__dirname, '..', 'pages', 'admin.html'), (_err: Error | null, fileBuffer: Buffer) => {
         reply.type('text/html').send(fileBuffer);
-    })
+    });
 });
 
 app.get('/paste/*', async (request: FastifyRequest, reply: FastifyReply) => {
@@ -56,13 +57,21 @@ app.get('/paste/*', async (request: FastifyRequest, reply: FastifyReply) => {
     if (fileId == '') {
         return reply.redirect('/new');
     }
-    const result: DustbinDocument | null = await api.getDocument(fileId);
+    const result: DustbinDocument | null = await api.getDocument(fileId.split('/')[0]);
     if (!result) return reply.send({ error: 'DOCUMENT_NOT_FOUND' });
+    if (fileId.split('/').length > 1) {
+        return fileId.split('/')[1] == 'raw' // /paste/fileId/raw
+        ? reply.type('text/plain').send(result?.data)
+        : reply // /paste/fileId/[download]
+            .type('application/octet-stream')
+            .header('Content-Disposition', `attachment; filename="${fileId.split('/')[0]}.${result?.language}"`)
+            .send(Buffer.from(result?.data, 'utf8'));
+    }
     fs.readFile(join(__dirname, '..', 'pages', 'paste.html'), (_err: Error | null, fileBuffer: Buffer) => {
         reply.type('text/html').send(
-            Buffer.from(fileBuffer.toString('utf8').replace('{{ %data% }}', result.data).replace('{{ %language% }}', result.language.toLowerCase()))
+            Buffer.from(fileBuffer.toString('utf8').replace('{{ %data% }}', result?.data).replace('{{ %language% }}', result!.language.toLowerCase()))
         );
-    })
+    });
 });
 
 // -------------------
@@ -109,13 +118,7 @@ app.post('/api/admin', async (request: FastifyRequest, reply: FastifyReply) => {
 
 
 // Run the server !
-const startServer = async () => {
-    try {
-      await app.listen(process.env.PORT || 1134, '0.0.0.0');
-      console.log(`[ Info ] Dustbin Init On http://localhost:${process.env.PORT || 1134}`);
-    } catch (err) {
-      console.error(err);
-      process.exit(1);
-    }
-};
-startServer();
+(async () => {
+    await app.listen(process.env.PORT || 1134, '0.0.0.0');
+    console.log(`[ Info ] Dustbin Init On https://localhost:${process.env.PORT || 1134}`);
+})();

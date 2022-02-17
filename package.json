@@ -1,13 +1,13 @@
 {
   "name": "dustbin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Yet Another Text Storage Service.",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc -p tsconfig.json && tailwindcss build -i ./pages/tailwind.input.css -o ./pages/tailwind.css",
+    "build": "tsc --build && tailwindcss build -i ./pages/tailwind.input.css -o ./pages/tailwind.css",
     "start": "node build",
-    "dev": "tsc -p tsconfig.json && node build",
+    "dev": "tsc --build && node build",
     "watch:css": "tailwindcss -i ./pages/tailwind.input.css -o ./pages/tailwind.css --watch"
   },
   "repository": {
@@ -30,10 +30,11 @@
     "typescript": "^4.5.5"
   },
   "dependencies": {
+    "dotenv": "^16.0.0",
     "dropbox": "^10.23.0",
     "fastify": "^3.27.0",
     "pg": "^8.7.1",
-    "uniqid": "^5.4.0",
-    "tailwindcss": "^3.0.15"
+    "tailwindcss": "^3.0.15",
+    "uniqid": "^5.4.0"
   }
 }
